@@ -25,10 +25,10 @@ app.listen(PORT, () => {
 
 app.get('/write', (req, res)=>{
     fs.writeFileSync(filePath, `Date : ${toDay} & Time : ${currentTime}`, 'utf8');
-    res.status(200).send(`<h1 style="text-align:center">WRITE</h1><br><br><br><br><br><br><br><br><br><h1 style="text-align:center">File Written Successfully : <span style="color:green">Date : ${toDay} & Time : ${currentTime}</span></h1>`);
+    res.status(200).send(`<h1 style="text-align:center">WRITE</h1><br><br><br><br><br><br><br><br><br><h1 style="text-align:center">File Written Successfully :<br><span style="color:green">Date : ${toDay} <br> Time : ${currentTime}</span></h1>`);
 });
 
 app.get('/read', (req, res)=>{
     let data = fs.readFileSync(filePath, 'utf8');
-    res.status(200).send(`<h1 style="text-align:center">READ</h1><br><br><br><br><br><br><br><br><br><h1 style="text-align:center">Data From File : <span style="text-align:center;color:red;">${data}</span></h1>`);
+    res.status(200).send(`<h1 style="text-align:center">READ</h1><br><br><br><br><br><br><br><br><br><h1 style="text-align:center">Data From File :<br><span style="text-align:center;color:red;">${data}</span></h1>`);
 });
