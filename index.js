@@ -12,7 +12,7 @@ function convertToIST(utcDate) {
 
 let today = convertToIST(new Date());
 let toDay = format(today, 'dd-MM-yyyy');
-let currentTime = format(today, 'HH:mm:ss');
+let currentTime = format(today, 'HH-mm-ss');
 const filePath = `TimeStamp/${toDay}.txt`
 
 app.get('/', (req, res) => {
