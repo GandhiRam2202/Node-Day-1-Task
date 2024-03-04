@@ -25,7 +25,7 @@ app.listen(PORT, () => {
 
 app.get('/write', (req, res)=>{
     fs.writeFileSync(filePath, `Date : ${toDay} & Time : ${currentTime}`, 'utf8');
-    res.status(200).send(`<h1 style="text-align:center">File Written Successfully : ${toDay}-${currentTime}</h1>`);
+    res.status(200).send(`<h1 style="text-align:center">File Written Successfully : Date : ${toDay} & Time : ${currentTime}</h1>`);
 });
 
 app.get('/read', (req, res)=>{
