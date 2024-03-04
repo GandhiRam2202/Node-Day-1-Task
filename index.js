@@ -6,7 +6,7 @@ import { format } from 'date-fns'
 const app = express();
 const PORT = 4000;
 
-let toDay = format(new Date(), 'dd-mm-yyyy-HH-mm-ss');
+let toDay = format(new Date(), 'dd-MM-yyyy-HH-mm-ss');
 
 app.get('/', (req, res) => {
     res.status(200).json({"message": 'Welcome to the Nodejs file system'});
