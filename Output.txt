@@ -1,0 +1,24 @@
+
+Render.com Link
+
+https://node-day-1-task-p2w6.onrender.com/
+
+{
+    "message": "Welcome to the Nodejs file system"
+}
+
+
+Endpoints
+
+Write Endpoint
+
+https://node-day-1-task-p2w6.onrender.com/write
+
+<h1 style="text-align:center">File Writed Successfully : 05-03-2024-01-09-54</h1>
+
+
+Read Endpoint
+
+https://node-day-1-task-p2w6.onrender.com/read
+
+<h1 style="text-align:center">Data From File : <span style="text-align:center;color:red;">05-03-2024-01-09-54</span></h1>
