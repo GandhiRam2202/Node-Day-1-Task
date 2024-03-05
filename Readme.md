@@ -2,6 +2,27 @@
 
 # Endpoints
 
+## File List  Endpoint
+
+`https://node-day-1-task-p2w6.onrender.com/filesList`
+
+[Demo-Link-read](https://node-day-1-task-p2w6.onrender.com/filesList)
+
+## Description: Reads the content of the file written by the /write endpoint.
+### Response:
++ ***Content :*** 
+[
+    "05-03-2024 18-01-31.txt",
+    "05-03-2024 18-01-57.txt",
+    "05-03-2024 18-02-11.txt",
+    "05-03-2024 18-05-53.txt",
+    "05-03-2024 18-15-47.txt",
+    "05-03-2024 18-17-21.txt",
+    "05-03-2024 18-38-11.txt",
+    "05-03-2024 18-41-39.txt",
+    "05-03-2024-18-00-34.txt"
+]
+
 ## Write Endpoint
 `https://node-day-1-task-p2w6.onrender.com/write`
 
