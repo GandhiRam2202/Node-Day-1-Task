@@ -1,70 +1,39 @@
-import express from "express";
-import fs, { readFileSync } from "fs";
-import { format } from "date-fns";
-import path from "path";
+import express from 'express';
+import fs from 'fs';
+import { format } from 'date-fns'
 
 const app = express();
 const PORT = 4000;
 
-app.get("/", (req, res) => {
-  let today = format(new Date(), "dd-mm-yyyy HH:mm:ss");
-  let message = "Generated at: ";
-  let content = `${message}${today}`;
+// Function to convert UTC time to Indian Standard Time (IST)
+function convertToIST(utcDate) {
+    return new Date(utcDate.toLocaleString("en-US", { timeZone: "Asia/Kolkata" }));
+}
 
-  const filePath = `TimeStamp/${today}.txt`;
-  fs.writeFileSync(filePath, content, "utf8");
+let today = convertToIST(new Date());
+let toDay = format(today, 'dd-MM-yyyy-HH:mm:ss');
 
-  let data = readFileSync(filePath, "utf8");
+const filePath = `TimeStamp/${toDay}.txt`
 
-  // HTML content with color and style
-  const styledContent = `
-    <html>
-      <head>
-        <title>Express Timestamp Task</title>
-        <style>
-          body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            text-align: center;
-            padding: 20px;
-          }
-          h1 {
-            color: #2c3e50;
-          }
-          p {
-            font-size: 18px;
-          }
-        </style>
-      </head>
-      <body>
-        <h1>Express Timestamp Task</h1>
-        <p>${content}</p>
-      </body>
-    </html>
-  `;
+app.get('/', (req, res) => {
+    res.status(200).json({"message": 'Welcome to the Nodejs file system'});
+})
 
-  res.status(200).send(styledContent);
+app.listen(PORT, () => {
+    console.log(`Server running on the port ${PORT}`);
 });
 
-app.get("/getTextFiles", (req, res) => {
-  const folderPath = "TimeStamp";
-
-  fs.readdir(folderPath, (err, files) => {
-    if (err) {
-      console.log(err);
-      res
-        .status(500)
-        .send("An error occurred while listing the files from directory");
-    } else {
-      const textFiles = files.filter((file) => path.extname(file) === ".txt");
-      res.status(200).json(textFiles);
-    }
-  });
+app.get('/write', (req, res)=>{
+    fs.writeFileSync(filePath, `Date : ${toDay}`, 'utf8');
+    res.status(200).send(`<h1 style="text-align:center">WRITE</h1><br><br><br><br><br><br><br><br><br><h1 style="text-align:center">File Written Successfully :<br><span style="color:green">Date : ${toDay}</span></h1>`);
 });
 
+app.get('/read', (req, res)=>{
+    let data = fs.readFileSync(filePath, 'utf8');
+    res.status(200).send(`<h1 style="text-align:center">READ</h1><br><br><br><br><br><br><br><br><br><h1 style="text-align:center">Data From File :<br><span style="text-align:center;color:red;">${data}</span></h1>`);
+});
 
-app.get("/fileslist", (req, res) => {
+app.get("/getfiles", (req, res) => {
     const filePath = "TimeStamp";
   
     fs.readdir(filePath, (err, files) => {
@@ -79,8 +48,3 @@ app.get("/fileslist", (req, res) => {
       }
     });
   });
-  
-
-app.listen(PORT, () => {
-  console.log(`Server listening at http://localhost:${PORT}`);
-});
